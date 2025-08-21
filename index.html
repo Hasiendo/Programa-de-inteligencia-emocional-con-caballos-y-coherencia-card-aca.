@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>haSiendo - Programa</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 1.5cm;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Verdana', sans-serif;
+            line-height: 1.4;
+            color: #333;
+            font-size: 13pt;
+            background: white;
+        }
+        
+        .page-container {
+            max-width: 21cm;
+            margin: 0 auto;
+            background: white;
+        }
+        
+        .header {
+            background: white;
+            color: #2d9b3b;
+            padding: 25px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            page-break-inside: avoid;
+            border: 3px solid #2d9b3b;
+        }
+        
+        .logo {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2d9b3b;
+        }
+        
+        .subtitle {
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            line-height: 1.3;
+            color: #2d9b3b;
+        }
+        
+        .quote {
+            font-style: italic;
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 5px;
+            border-left: 3px solid #ffd700;
+            font-size: 0.85em;
+            color: #333;
+        }
+        
+        .section {
+            margin: 15px 0;
+            page-break-inside: avoid;
+        }
+        
+        .section-title {
+            color: #2d9b3b;
+            font-size: 1.5em;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .intro-questions {
+            text-align: center;
+            margin: 15px 0;
+        }
+        
+        .intro-questions p {
+            margin: 8px 0;
+            font-size: 12pt;
+        }
+        
+        .highlight-question {
+            background: #ffd700;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin: 15px 0;
+        }
+        
+        .stat-card {
+            background: #2d9b3b;
+            color: white;
+            padding: 12px 8px;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 10pt;
+        }
+        
+        .stat-number {
+            font-size: 1.4em;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .benefits-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .benefit-card {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 5px;
+            border-left: 3px solid #2d9b3b;
+            font-size: 11pt;
+        }
+        
+        .benefit-title {
+            font-weight: bold;
+            color: #2d9b3b;
+            margin-bottom: 5px;
+            font-size: 12pt;
+        }
+        
+        .neurological-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .neuro-card {
+            background: #f0f8f0;
+            padding: 12px;
+            border-radius: 5px;
+            border-top: 3px solid #2d9b3b;
+            font-size: 11pt;
+        }
+        
+        .neuro-title {
+            font-weight: bold;
+            color: #2d9b3b;
+            margin-bottom: 8px;
+            font-size: 12pt;
+        }
+        
+        .sessions-container {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .session-group-title {
+            color: #2d9b3b;
+            font-size: 1.1em;
+            margin: 12px 0 8px 0;
+            font-weight: bold;
+        }
+        
+        .session {
+            background: white;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 3px;
+            border-left: 3px solid #4caf50;
+            font-size: 11pt;
+        }
+        
+        .session-title {
+            font-weight: bold;
+            color: #2d9b3b;
+            margin-bottom: 5px;
+            font-size: 12pt;
+        }
+        
+        .program-info {
+            background: #2d9b3b;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .program-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 10px 0;
+        }
+        
+        .program-card {
+            background: rgba(255,255,255,0.1);
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 11pt;
+        }
+        
+        .program-card h3 {
+            margin-bottom: 8px;
+            font-size: 12pt;
+        }
+        
+        .pricing {
+            background: #ffd700;
+            color: #333;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        
+        .price-main {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        
+        .facilitators-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .facilitator-card {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 5px;
+            border-top: 3px solid #2d9b3b;
+        }
+        
+        .facilitator-name {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2d9b3b;
+            margin-bottom: 8px;
+        }
+        
+        .testimonial {
+            background: #f8f9fa;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border-left: 3px solid #ffd700;
+            font-style: italic;
+            font-size: 11pt;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: #2d9b3b;
+            margin-top: 8px;
+            font-style: normal;
+        }
+        
+        .contact {
+            background: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 10px 0;
+            font-size: 11pt;
+        }
+        
+        .contact-item {
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            border-radius: 3px;
+        }
+        
+        .cta-button {
+            background: #ffd700;
+            color: #333;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background: #ffed4e;
+            transform: translateY(-2px);
+        }
+        
+        .final-message {
+            background: #2d9b3b;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .scientific-note {
+            background: #e9ecef;
+            padding: 10px;
+            text-align: center;
+            border-radius: 3px;
+            font-size: 10pt;
+            color: #666;
+            margin: 10px 0;
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 5px 0;
+        }
+        
+        li {
+            padding: 2px 0;
+            padding-left: 12px;
+            position: relative;
+            font-size: 11pt;
+        }
+        
+        li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #2d9b3b;
+            font-size: 8pt;
+        }
+        
+        .page-break {
+            page-break-before: always;
+        }
+        
+        @media print {
+            .page-container {
+                max-width: none;
+            }
+            
+            body {
+                font-size: 10pt;
+            }
+            
+            .header {
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+            
+            .program-info, .final-message, .contact {
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">HaSiendo™</div>
+            <div class="subtitle">ENTRENAMIENTO EN INTELIGENCIA EMOCIONAL CON CABALLOS Y COHERENCIA CARDÍACA</div>
+            <div class="quote">
+                El esfuerzo surge por el absoluto desconocimiento de nuestra naturaleza humana<br>
+                <strong>— Dr. Jorge Mpodozis, Universidad de Chile</strong>
+            </div>
+        </div>
+
+        <!-- Tu Talento Section -->
+        <div class="section">
+            <h1 class="section-title">Tu talento se activa en condiciones que lo hagan posible</h1>
+            <div class="intro-questions">
+                <p>¿Y si tu mayor potencial no viene del esfuerzo constante, sino de fluir con tu naturaleza?</p>
+                <p>¿Y si tienes capacidades extraordinarias instaladas de fábrica esperando las condiciones que las hagan posible emerger?</p>
+                <div class="highlight-question">
+                    ¿Y si para solucionar diversos temas tan humanos no requieres hablarlos? SINO SIMPLEMENTE TRANSFORMARLOS EN HaSiendo™?
+                </div>
+            </div>
+        </div>
+
+        <!-- La Ciencia del Talento -->
+        <div class="section">
+            <h2 class="section-title">La ciencia para desbloquear talento</h2>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <span class="stat-number">100%</span>
+                    <div>De nosotros tenemos capacidades latentes instaladas</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">85%</span>
+                    <div>De las intervenciones producen cambios neuroplásticos</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">44.6</span>
+                    <div>Edad promedio del síndrome del sabio súbito</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">50</span>
+                    <div>Casos documentados de talentos emergentes</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quote sobre caballos -->
+        <div class="section">
+            <div class="quote" style="background: #f8f9fa; color: #333; border-left: 3px solid #2d9b3b;">
+                El genio REAL de los caballos está en detectar nuestras señales más sutiles con sentidos extraordinarios perfeccionados por 50 millones de años de evolución, convirtiéndolos en perfectos espejos de nuestra coherencia emocional para mejorar la toma de decisiones en el momento adecuado y oportuno.<br>
+                <strong>— Investigación en Neurobiología Equina, 2024</strong>
+            </div>
+        </div>
+
+        <!-- Transformación Neurobiológica -->
+        <div class="section">
+            <h2 class="section-title">Transformación neurobiológica comprobada</h2>
+            <div class="neurological-grid">
+                <div class="neuro-card">
+                    <div class="neuro-title">🧠 Cambios Cerebrales (8 sem)</div>
+                    <ul>
+                        <li>Núcleo caudado: Mayor conectividad</li>
+                        <li>Ganglios basales: Reorganización</li>
+                        <li>Sistema límbico: Activación directa</li>
+                        <li>Sin necesidad de medicación</li>
+                    </ul>
+                </div>
+                <div class="neuro-card">
+                    <div class="neuro-title">⚗️ Cambios Hormonales</div>
+                    <ul>
+                        <li>Oxitocina ↑ en 3-30 minutos</li>
+                        <li>Cortisol ↓ 24% documentado</li>
+                        <li>HRV mejora 20.6%</li>
+                        <li>Activación parasimpática</li>
+                    </ul>
+                </div>
+                <div class="neuro-card">
+                    <div class="neuro-title">💆‍♀️ Resultados en Estrés</div>
+                    <ul>
+                        <li>66.7% reducción (3 semanas)</li>
+                        <li>87.5% mejora (6 semanas)</li>
+                        <li>Beneficios sostenidos</li>
+                        <li>Sistema ventral vagal activo</li>
+                    </ul>
+                </div>
+                <div class="neuro-card">
+                    <div class="neuro-title">🐴 VÍNCULO HUMANO-CABALLO</div>
+                    <ul>
+                        <li>El campo electromagnético del corazón del caballo favorece la coherencia y la paz mental (calma)</li>
+                        <li>Los caballos reflejan con precisión nuestro estado interno</li>
+                        <li>Su presencia invita a liberar tensiones y mostrarnos tal cual somos</li>
+                        <li>Nos ayudan a reconocer aspectos multidimensionales y multisensoriales que solos no podríamos ver</li>
+                        <li>Nos ayudan a detectar los mundos del multiverso en el que habitamos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Por Qué el Esfuerzo -->
+        <div class="section">
+            <h2 class="section-title">Por qué el esfuerzo constante te agota sin resultados</h2>
+            <div style="text-align: center; margin: 10px 0; font-weight: bold;">
+                No es ADAPTACIÓN (sometimiento) - Es ACOPLAMIENTO ESTRUCTURAL (co-creación)
+            </div>
+            <div class="benefits-container">
+                <div class="benefit-card">
+                    <div class="benefit-title">🌊 Fluyes con tu naturaleza</div>
+                    <p>No contra ella. Como el agua.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-title">🎯 Activas talentos dormidos</div>
+                    <p>Sin forzar. Emergen naturalmente.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-title">💡 Integración natural</div>
+                    <p>Mente-cuerpo-emoción-acción se unifican.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-title">🎭 Sueltas las máscaras</div>
+                    <p>Los caballos ven tu verdad, por ende el cambio se realiza solo.</p>
+                </div>
+                <div class="benefit-card" style="grid-column: 1 / -1;">
+                    <div class="benefit-title">✨ Simplemente sucede HaSiendo™</div>
+                    <p>Se transforman problemas o dificultades sin necesidad de contarnos de qué se trata sino que al trabajar las 6 emociones básicas y dos fenómenos naturales la neurobiología aplicada sucede.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tu Transformación en 9 Sesiones -->
+        <div class="section page-break">
+            <h2 class="section-title">Tu transformación en 9 sesiones</h2>
+            
+            <div style="background: #f0f8f0; padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #2d9b3b;">
+                <h3 style="color: #2d9b3b; margin-bottom: 10px; font-size: 13pt;">Trabajo pie a tierra: seguro y accesible para todos</h3>
+                <p style="margin-bottom: 10px; font-size: 12pt;">
+                    No se requiere experiencia previa con caballos. HaSiendo™ utiliza la metodología de <strong>trabajo pie a tierra (no nos montamos sobre el caballo)</strong>, donde tanto la persona como el caballo permanecen siempre con los pies en la tierra, en un ambiente completamente seguro y controlado.
+                </p>
+                <p style="margin-bottom: 10px; font-size: 12pt;">
+                    El proceso comienza con interacciones a distancia respetuosa, permitiendo que cada participante se sienta cómodo y confiado. El contacto físico con el caballo emerge de manera natural y gradual, únicamente cuando el <strong>flujo relacional caballo-humano</strong> se ha establecido de forma orgánica y auténtica las personas se acercan y tocan al caballo.
+                </p>
+                <p style="margin-bottom: 0; font-size: 12pt;">
+                    Nuestros facilitadores expertos guían cada momento, asegurando que la experiencia sea transformadora y completamente segura para personas de más de 18 años, independientemente de su nivel de experiencia o comodidad previa con los animales.
+                </p>
+            </div>
+
+            <div class="sessions-container">
+                <div class="session-group-title">SESIONES 1 y 2: DIAGNÓSTICO Y FLUJO RELACIONAL</div>
+                
+                <div class="session">
+                    <div class="session-title">a) DIAGNÓSTICO PERSONAL</div>
+                    <p>(por mail individual e íntimo, no para compartir)</p>
+                </div>
+
+                <div class="session">
+                    <div class="session-title">b) MI FLUJO RELACIONAL (VÍNCULO) CON:</div>
+                    <div style="margin: 8px 0;">
+                        <strong>👤 LO NO DICHO QUE ATASCA</strong>
+                        <ul>
+                            <li>Emociones reprimidas</li>
+                            <li>Patrones inconscientes</li>
+                            <li>Liberación a través del cuerpo</li>
+                        </ul>
+                    </div>
+                    <div style="margin: 8px 0;">
+                        <strong>💪 CUERPO</strong>
+                        <ul>
+                            <li>Elevar el nivel de percepción humana para entrenar el fenómeno acción-percepción</li>
+                            <li>Consciencia somática</li>
+                            <li>Sabiduría corporal innata</li>
+                            <li>Canalización emocional de flujos relacionales</li>
+                        </ul>
+                    </div>
+                    <div style="margin: 8px 0;">
+                        <strong>✨ TALENTO NATURAL</strong>
+                        <ul>
+                            <li>Lo innato en ti</li>
+                            <li>Materializado en el diario vivir: felicidad y realización personal/profesional</li>
+                            <li>Fluir en congruencia con la vida y el mundo en el que habitamos</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <p style="text-align: center; font-style: italic; margin: 12px 0; font-size: 9pt;">
+                    Este entrenamiento te ayuda a recordar quién eres y qué hemos olvidado bajo capas de condicionamiento social.
+                </p>
+
+                <div class="session-group-title">SESIONES 3-8: MAESTRÍA EMOCIONAL</div>
+                <p style="text-align: center; margin-bottom: 10px; font-size: 10pt;">Un viaje guiado por cada emoción básica</p>
+
+                <div class="session">
+                    <div class="session-title">SESIÓN 3 → MIEDO</div>
+                    <p>Contracción protectora que nos preserva de un peligro mayor</p>
+                </div>
+
+                <div class="session">
+                    <div class="session-title">SESIÓN 4 → IRA</div>
+                    <p>La fuerza de transformación y establecimiento de límites saludables</p>
+                </div>
+
+                <div class="session">
+                    <div class="session-title">SESIÓN 5 → ASCO</div>
+                    <p>Los límites sagrados y la protección de tu espacio personal</p>
+                </div>
+
+                <div class="session">
+                    <div class="session-title">SESIÓN 6 → TRISTEZA</div>
+                    <p>El arte de soltar y procesar pérdidas significativas</p>
+                </div>
+
+                <div class="session">
+                    <div class="session-title">SESIÓN 7 → SORPRESA</div>
+                    <p>Apertura al misterio y a las posibilidades inesperadas</p>
+                </div>
+
+                <div class="session">
+                    <div class="session-title">SESIÓN 8 → FELICIDAD</div>
+                    <p>Estado natural del ser cuando fluimos en coherencia (flow)</p>
+                </div>
+
+                <p style="text-align: center; font-style: italic; margin: 12px 0; font-size: 9pt;">
+                    Los caballos serán nuestros guías en este viaje interior.<br>
+                    La anticipación es un epifenómeno que puede emerger en cada una, todas o ninguna de las emociones.
+                </p>
+
+                <div class="session">
+                    <div class="session-title">SESIÓN 9 → CIERRE</div>
+                    <p>Integración y consolidación de tu transformación. Tu talento natural fluyendo sin esfuerzo.</p>
+                    <p>La coherencia cardíaca establecida como tu nuevo estado base.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Programa HaSiendo 2024-2025 -->
+        <div class="program-info">
+            <h2 style="text-align: center; margin-bottom: 15px; font-size: 1.3em;">Programa HaSiendo™ 2024-2025</h2>
+            <div class="program-grid">
+                <div class="program-card">
+                    <h3>📍 Estructura</h3>
+                    <ul>
+                        <li>9 sesiones presenciales</li>
+                        <li>Viernes 9:00 - 12:30</li>
+                        <li><strong>Octubre:</strong> 17, 24, 31</li>
+                        <li><strong>Noviembre:</strong> 7, 14, 21, 28</li>
+                        <li><strong>Diciembre:</strong> 5, 12</li>
+                        <li>Máximo: 12 participantes</li>
+                        <li>Lugar: Centro Iyuptala</li>
+                        <li>Ruta 34, Km 44,500, Piedra del Toro, Canelones, Uruguay</li>
+                    </ul>
+                </div>
+                <div class="program-card">
+                    <h3>🎁 Incluye</h3>
+                    <ul>
+                        <li>1. Medición coherencia HeartMath</li>
+                        <li>2. Carpeta que incluye:
+                            <ul style="margin-left: 15px; font-size: 10pt;">
+                                <li>Matriz emociones Plutchik</li>
+                                <li>Bitácora de transformación</li>
+                                <li>Matriz antes/después</li>
+                                <li>Herramientas prácticas</li>
+                            </ul>
+                        </li>
+                        <li>3. Entrenamiento con caballos</li>
+                        <li>4. Entregamos una botella de agua sin gas fresca por sesión</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="pricing">
+            <h2 style="margin-bottom: 8px; font-size: 1em;">Inversión en tu transformación</h2>
+            <div class="price-main">$960 USD</div>
+            <div style="font-size: 0.8em;">
+                Precio especial inscripción anticipada - 15 DÍAS ANTES DE COMENZAR<br>
+                <strong>Ahorra $310 USD</strong><br>
+                Precio regular: $1,270 USD
+            </div>
+        </div>
+
+        <!-- Facilitadoras -->
+        <div class="section">
+            <h2 class="section-title">Tus facilitadoras expertas</h2>
+            <div class="facilitators-grid">
+                <div class="facilitator-card">
+                    <div class="facilitator-name">Beatriz López López</div>
+                    <ul>
+                        <li>Partner para Uruguay del laboratorio de neurobiología Episteme, Chile</li>
+                        <li>Diplomada Neurobiología del Conocer (U. de Chile)</li>
+                        <li>Diplomada Biología Cultural y biología del amor - Dr. Maturana</li>
+                        <li>Pionera Teoría U en Uruguay (Alemania)</li>
+                        <li>Certificada Lego Serious Play</li>
+                        <li>Experta en neurobiología de la gestión del cambio</li>
+                        <li>Experta en innovación (ESEUNE, España), estrategia (Harvard/Ucudal) y anticipación (neurobiología Chile)</li>
+                        <li>Consteladora organizacional, estructural y sistémica (corriente alemana Mathias Varga Von Kibed)</li>
+                    </ul>
+                </div>
+                <div class="facilitator-card">
+                    <div class="facilitator-name">Rosina Guerra</div>
+                    <ul>
+                        <li>Coach Ontológico y Holo-Sistémico con caballos</li>
+                        <li>Consteladora con práctica en constelaciones familiares, sistémicas y con caballos</li>
+                        <li>Facilitadora de procesos de aprendizaje profundo asistido por caballos</li>
+                        <li>Facilitadora certificada IETAC</li>
+                        <li>Instructora de Mindfulness aplicada a contextos naturales y relacionales</li>
+                        <li>Coach en Resiliencia y Coherencia Cardíaca con Caballos - HeartMath Institute España</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="section">
+            <h2 class="section-title">Lo que dicen nuestros participantes</h2>
+            <div class="testimonial">
+                Aprendí más sobre liderazgo auténtico en 4 horas con un caballo que en décadas de seminarios corporativos.
+                <div class="testimonial-author">— Ejecutivo corporativo</div>
+            </div>
+            <div class="testimonial">
+                Esta es la primera vez en mucho tiempo que no siento ansiedad. El caballo y yo nos conectamos en perfecta coherencia.
+                <div class="testimonial-author">— Participante del programa</div>
+            </div>
+            <div class="testimonial">
+                Tenía adicción a un tipo de alimento y me desapareció luego de entrenar con los caballos.
+                <div class="testimonial-author">— Participante del programa</div>
+            </div>
+            <div class="testimonial">
+                Era adicta a las compras, ahora compro la mitad.
+                <div class="testimonial-author">— Participante del programa</div>
+            </div>
+            <div class="testimonial" style="background: #e8f5e8; border-left: 3px solid #2d9b3b;">
+                Empresas que implementan programas de inteligencia emocional con caballos elevan su productividad un 400%.
+                <div class="testimonial-author">— Estudio corporativo</div>
+            </div>
+        </div>
+
+        <!-- Final Message -->
+        <div class="final-message">
+            <h2 style="margin-bottom: 10px;">Tu talento se activa en condiciones que lo hagan posible</h2>
+            <p>No es místico. Es profundamente humano.</p>
+            <p>Es neurobiología aplicada para liberar tu potencial natural.</p>
+        </div>
+
+        <!-- Contact -->
+        <div class="contact">
+            <h2 style="margin-bottom: 15px;">Reserva tu lugar</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <strong>📱 WhatsApp</strong><br>
+                    +598 94 309 800 Beatriz López<br>
+                    +598 99 286 043 Rosina Guerra
+                </div>
+                <div class="contact-item">
+                    <strong>📧 Email</strong><br>
+                    bll@beatrizlopezlopez.com<br>
+                    www.beatrizlopezlopez.com
+                </div>
+                <div class="contact-item" style="grid-column: 1 / -1;">
+                    <strong>📷 Instagram</strong><br>
+                    @centroiyuptala
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin: 20px 0;">
+                <a href="https://wa.me/59894309800" target="_blank" style="text-decoration: none;">
+                    <div style="background: #ffd700; color: #333; width: 4cm; height: 4cm; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.65em; font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin: 0 auto; text-align: center; padding: 8px; line-height: 1.2;">
+                        📱<br>CLICK AQUÍ<br>POR DUDAS O<br>RESERVAR<br>TU LUGAR
+                    </div>
+                </a>
+            </div>
+            
+            <div style="background: #f8f9fa; color: #333; padding: 12px; border-radius: 8px; margin: 15px 0; text-align: center; border-left: 3px solid #2d9b3b;">
+                <strong style="font-size: 1em;">📍 UBICACIÓN: Centro Iyuptala</strong><br>
+                <span style="font-size: 0.9em;">Ruta 34, Km 44,500 - Piedra del Toro, Canelones</span><br>
+                <a href="https://waze.com/ul?q=Centro%20Iyuptala%20Ruta%2034%20Piedra%20del%20Toro%20Canelones%20Uruguay" target="_blank" style="color: #2d9b3b; font-weight: bold; font-size: 0.95em;">
+                    📱 Abrir en Waze
+                </a> | 
+                <span style="font-size: 0.85em; color: #ff0000; font-weight: bold;">
+                    Usa Waze para evitar multas
+                </span><br>
+                <span style="font-size: 0.8em; color: #666;">
+                    GPS: -34.7500, -55.9500
+                </span>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <div style="font-size: 1.1em; margin-bottom: 8px;">HaSiendo™ - Entrenamiento en Inteligencia Emocional con Caballos y Coherencia Cardíaca</div>
+                <div style="margin-bottom: 10px; font-size: 10pt;">No capacitamos, entrenamos tu HaSiendo™.</div>
+                <div style="font-size: 1em; color: #ffd700;">Con amor, BEATRIZ & ROSINA</div>
+            </div>
+        </div>
+
+        <!-- Scientific Note -->
+        <div class="scientific-note">
+            Basado en +170 estudios científicos (MIT, Harvard, Stanford, Johns Hopkins, 2015-2024)
+        </div>
+        
+        <!-- Footer de Propiedad Intelectual -->
+        <div style="background: #2d3748; color: white; padding: 15px; text-align: center; border-radius: 5px; margin: 20px 0; font-size: 10pt;">
+            <strong>HaSiendo™ - Método desarrollado por Beatriz López López y Rosina Guerra.</strong><br>
+            Prohibida su reproducción sin autorización.
+        </div>
+    </div>
+</body>
+</html>
